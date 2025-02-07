@@ -24,5 +24,5 @@ def get_req() :
     print(res.status_code)
     print(res.text)
 
-# post_req()
-get_req()
+post_req()
+# get_req()

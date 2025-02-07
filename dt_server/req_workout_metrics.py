@@ -6,9 +6,8 @@ user_id = [1,2,3]
 workout_session_id = [1,2,3]
 workout_id = [1,2,3]
 
-data = {    
-    'workout_metrics' : [
-        {
+data = [
+        {            
             'set' : 1, 
             'rep' : 1, 
             'weight' : 1, 
@@ -47,11 +46,14 @@ data = {
             'power' : 1, 
             'created_at' : '2025-02-04 10:18:00', 
         }
-        ]
-}
+    ]
 
 def post_req(user_id, workout_session_id, workout_id, data) : 
     uri = f'{base_url}//users/{user_id}/workout_sessions/{workout_session_id}/workouts/{workout_id}/workout_metrics'
+
+    data[0]['workout'] = workout_id
+    data[1]['workout'] = workout_id
+    data[2]['workout'] = workout_id
 
     data = json.dumps(data)
     res = requests.post(uri, data = data, headers = headers)
