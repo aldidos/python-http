@@ -1,4 +1,7 @@
-from config import base_url, headers
+import sys
+sys.path.append('.')
+
+from dt_server.config import base_url, headers
 import requests
 import json
 

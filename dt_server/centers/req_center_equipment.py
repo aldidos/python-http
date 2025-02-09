@@ -6,8 +6,8 @@ import requests
 import json
 
 def get_req() : 
-    user_id = 1
-    uri = f'{base_url}/users/{user_id}/recent_workout'
+    center_id = 1
+    uri = f'{base_url}/centers/{center_id}/equipments'
 
     res = requests.get(uri, headers = headers)
     print(res.status_code)

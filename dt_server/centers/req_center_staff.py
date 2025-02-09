@@ -1,4 +1,7 @@
-from config import base_url, headers
+import sys
+sys.path.append('.')
+
+from dt_server.config import base_url, headers
 import requests
 import json
 
@@ -25,5 +28,5 @@ def get_req() :
     print(res.status_code)
     print(res.text)
 
-post_req(data)
+# post_req(data)
 get_req()

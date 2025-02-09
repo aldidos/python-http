@@ -1,14 +1,17 @@
-from config import base_url, headers
+import sys
+sys.path.append('.')
+
+from dt_server.config import base_url, headers
 import requests
 import json
 
 user_account = {
-    'login_id' : 'qwertyui', 
+    'login_id' : 'jungilkim', 
     'login_pw' : 'aaaaaabb'
 }
 
 user_info = {
-    'name' : 'aaaa', 
+    'name' : 'kim jung il', 
     'weight' : 75.5, 
     'height' : 178.4, 
     'birthday' : '1983-04-24', 

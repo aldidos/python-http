@@ -1,9 +1,12 @@
-from config import base_url, headers
+import sys
+sys.path.append('.')
+
+from dt_server.config import base_url, headers
 import requests
 import json
 
 data = {
-    'login_id' : 'qwertyui', 
+    'login_id' : 'test_user_1', 
     'login_pw' : 'aaaaaabb'
 }
 

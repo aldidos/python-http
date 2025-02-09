@@ -1,10 +1,13 @@
-from config import base_url, headers
+import sys
+sys.path.append('.')
+
+from dt_server.config import base_url, headers
 import requests
 import json
 
 def get_req() : 
-    center_id = 1
-    uri = f'{base_url}/centers/{center_id}/equipments'
+    user_id = 1
+    uri = f'{base_url}/users/{user_id}'
 
     res = requests.get(uri, headers = headers)
     print(res.status_code)

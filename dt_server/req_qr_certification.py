@@ -5,8 +5,7 @@ from dt_server.config import base_url, headers
 import requests
 import json
 
-data = {
-    'nfc_tag_id' : 'test_nfc_tag_id_123456', 
+data = {    
     'user_id' : 1, 
     'center_equipment_id' : 1
 }
@@ -21,8 +20,8 @@ def load_session_id() :
     with open('./temp_session_id.json', 'r', encoding='utf-8') as f : 
         return json.load(f)
 
-def post_nfc_certification() : 
-    uri = f'{base_url}/nfc_certification'
+def post_qr_certification() : 
+    uri = f'{base_url}/qr_certification'
 
     res = requests.post(uri, data = data, headers = headers)    
     print(res.status_code)
@@ -30,8 +29,8 @@ def post_nfc_certification() :
     session_id = res.cookies.get('session')
     save_session_id(session_id)
 
-def get_nfc_certification() : 
-    uri = f'{base_url}/nfc_certification' 
+def get_qr_certification() : 
+    uri = f'{base_url}/qr_certification' 
 
     session_info = load_session_id()
 
@@ -43,5 +42,5 @@ def get_nfc_certification() :
     print(res.status_code)
     print(res.text)    
 
-# post_nfc_certification() 
-get_nfc_certification( )
+post_qr_certification() 
+get_qr_certification()

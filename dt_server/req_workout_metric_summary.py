@@ -1,4 +1,7 @@
-from config import base_url, headers
+import sys
+sys.path.append('.')
+
+from dt_server.config import base_url, headers
 import requests
 import json
 
@@ -23,6 +26,6 @@ def get(user_id, from_date, to_date) :
 get_recent(user_id)
 
 from_date = '2025-02-01'
-to_date = '2025-02-08'
+to_date = '2025-02-10'
 
 get(user_id, from_date, to_date)
