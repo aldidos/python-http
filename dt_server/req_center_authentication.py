@@ -1,40 +1,51 @@
+'''
+====================================================================================
+API : /center_authentication
+    Methods : 
+        PUT : 
+            status code: 
+                201 : OK
+                400 : Bad Request
+        GET : 
+            status code : 
+                200 : OK
+                404 : Not Found
+====================================================================================
+'''
+
 import sys
 sys.path.append('.')
 
-from dt_server.config import base_url, headers
+from base_uri import BaseAPI, headers, data_to_json
 import requests
-import json
 
-def send_request_put() : 
+class CenterAuthAPI(BaseAPI) : 
 
-    data = {
-        'center_name' : 'test_center_1', 
-        'center_address' : 'test_center_address_1dshjkdsa',
-        'user_id' : '1',
-        'user_name' : 'test_user_1',
-        'birthday' : '1982-01-31',
-        'contact' : '010-2123-2111',
-    }
-    data = json.dumps(data)
-    
-    uri = f'{base_url}//center_authentication'
+    def get(self, data) : 
+        data = data_to_json(data)
+        res = requests.get(self.uri, data = data, headers=headers)
+        self.print_response('GET', res)
 
-    res = requests.put(uri, data = data, headers = headers)
-    print(res.status_code)
-    print(res.text)
+user_id = 1
 
-def send_request_get() : 
-    data = {
-        'user_id' : 1,
-        'center_id' : 1
-    }
-    data = json.dumps(data)
+put_data = {
+    'center_name' : 'test_center_1', 
+    'center_address' : 'test_center_address_1dshjkdsa',
+    'user_id' : user_id
+}
 
-    uri = f'{base_url}//center_authentication'
+get_data = {
+    'user_id' : 1,
+    'center_id' : 1
+}
 
-    res = requests.get(uri, data = data, headers = headers)
-    print(res.status_code)
-    print(res.text)
+def main() : 
+    uri = f'/center_authentication' 
+    api = CenterAuthAPI(uri)
 
-# send_request_put()
-send_request_get()
+    api.put(put_data)
+
+    api.get(get_data)
+
+if __name__ == '__main__' : 
+    main()

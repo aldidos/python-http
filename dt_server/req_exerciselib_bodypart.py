@@ -1,24 +1,39 @@
+'''
+====================================================================================
+API : /exerciselib_bodyparts
+    Methods : 
+        GET : 
+            status code : 
+                200 : OK
+
+API : /exerciselib_bodyparts/<exerciselib_id>/<body_part_id>
+Path params : 
+    exerciselib_id : ExerciseLibrary 고유키
+    body_part_id : BodyPart 고유키
+Methods : 
+        GET : 
+            status code : 
+                200 : OK
+                404 : Not Found
+====================================================================================
+'''
+
 import sys
 sys.path.append('.')
 
-from dt_server.config import base_url, headers
-import requests
-import json
+from base_uri import BaseAPI
 
-def get_req() : 
-    uri = f'{base_url}/exerciselib_bodyparts'
+def main() : 
+    uri = f'/exerciselib_bodyparts' 
+    api = BaseAPI(uri)
+    api.get()
 
-    res = requests.get(uri, headers = headers)
-    print(res.status_code)
-    print(res.text)
-
-def get_one() : 
     exerciselib_id = 1
     body_part_id = 4
-    uri = f'{base_url}/exerciselib_bodyparts/{exerciselib_id}/{body_part_id}'
+    uri = f'/exerciselib_bodyparts/{exerciselib_id}/{body_part_id}' 
+    api = BaseAPI(uri)
+    api.get()
 
-    res = requests.get(uri, headers = headers)
-    print(res.status_code)
-    print(res.text)
+if __name__ == '__main__' : 
+    main()
 
-get_req()

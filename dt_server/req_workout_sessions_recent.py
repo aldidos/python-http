@@ -1,29 +1,28 @@
 '''
 ====================================================================================
-API : /signin
+API : /users/<user_id>/workout_sessions/recent
+    Path params : 
+        user_id : User 데이터의 고유키
     Methods : 
-        PUT : 
-            status code: 
+        GET : 
+            status code : 
                 200 : OK
-                400 : Bad Request        
+                404 : Not Found
 ====================================================================================
 '''
 
 import sys
 sys.path.append('.')
 
-from base_uri import BaseAPI
+from dt_server.base_uri import BaseAPI
 
-data = {
-    'login_id' : 'test_user_1', 
-    'login_pw' : 'aaaaaabb'
-}
+user_id = 1
 
 def main() : 
-    uri = f'/signin' 
+    uri = f'/users/{user_id}/workout_sessions/recent' 
     api = BaseAPI(uri)
 
-    api.put(data)
+    api.get()
 
 if __name__ == '__main__' : 
     main()

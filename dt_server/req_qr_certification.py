@@ -1,46 +1,62 @@
+'''
+====================================================================================
+API : /qr_certification
+    Methods : 
+        PUT : 
+            status code: 
+                200 : OK
+                400 : Bad Request
+        GET : 
+            status code : 
+                200 : OK
+                404 : Not Found
+====================================================================================
+'''
 import sys
 sys.path.append('.')
 
-from dt_server.config import base_url, headers
+from config import base_url, headers
 import requests
 import json
+from base_uri import BaseAPI
 
-data = {    
+class QRcertificationAPI(BaseAPI) : 
+
+    def __init__(self, uri) : 
+        super().__init__(uri)
+
+    def save_session_id(self, session_id) : 
+        with open('./temp_session_id.json', 'w', encoding='utf-8') as f : 
+            json.dump({'session' : session_id}, f)
+
+    def load_session_id(self, ) : 
+        with open('./temp_session_id.json', 'r', encoding='utf-8') as f : 
+            return json.load(f)
+
+    def put(self, data) : 
+        res = super().put(data)        
+        session_id = res.cookies.get('session')
+        self.save_session_id(session_id)
+
+    def get(self, data) : 
+        session_info = self.load_session_id()
+
+        cookie = {
+            'session' : session_info['session']
+        }
+        res = requests.get(self.uri, data = data, headers = headers, cookies=cookie)
+        self.print_response('GET', res)        
+
+data = {
     'user_id' : 1, 
-    'center_equipment_id' : 1
+    'center_equipment_id' : 1, 
+    'workout_session_id' : 1
 }
+     
+if __name__ == '__main__' : 
+    uri = f'/qr_certification' 
+    api = QRcertificationAPI(uri)
 
-data = json.dumps(data)
+    api.put(data)
 
-def save_session_id(session_id) : 
-    with open('./temp_session_id.json', 'w', encoding='utf-8') as f : 
-        json.dump({'session' : session_id}, f)
-
-def load_session_id() : 
-    with open('./temp_session_id.json', 'r', encoding='utf-8') as f : 
-        return json.load(f)
-
-def post_qr_certification() : 
-    uri = f'{base_url}/qr_certification'
-
-    res = requests.post(uri, data = data, headers = headers)    
-    print(res.status_code)
-    print(res.text)
-    session_id = res.cookies.get('session')
-    save_session_id(session_id)
-
-def get_qr_certification() : 
-    uri = f'{base_url}/qr_certification' 
-
-    session_info = load_session_id()
-
-    cookie = {
-        'session' : session_info['session']
-    }
-
-    res = requests.get(uri, data = data, headers = headers, cookies=cookie)
-    print(res.status_code)
-    print(res.text)    
-
-post_qr_certification() 
-get_qr_certification()
+    api.get(data)
