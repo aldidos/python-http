@@ -11,19 +11,6 @@ API : /users/<user_id>/workout_sessions
             status code : 
                 200 : OK
                 404 : Not Found
-
-API : /users/<user_id>/workout_sessions/<workout_sessions_id>
-    Path params : 
-        user_id : User 데이터의 고유키
-        workout_sessions_id : WorkoutSessions 고유키
-    Methods : 
-        PATCH : 
-            status code: 
-                200 : OK
-        GET : 
-            status code : 
-                200 : OK
-                404 : Not Found
 ====================================================================================
 '''
 
@@ -83,15 +70,7 @@ def main() :
 
     api.get({
          'date' : '2025.02-11' 
-    })
-
-    workout_session = api.post(data)
-    if workout_session : 
-        workout_session['is_completed'] = True
-        workout_session['status'] = 'Complete'
-        workout_session_id = workout_session['id']
-        uri = f'/users/{user_id}/workout_sessions/{workout_session_id}'
-        BaseAPI(uri).patch( workout_session )
+    })    
 
 if __name__ == '__main__' : 
     main()
