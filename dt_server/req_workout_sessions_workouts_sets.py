@@ -29,28 +29,35 @@ def create_workout_set(set, weight, total_reps, set_start_time, set_end_time, re
         'res_end_time' : res_end_time
     }
 
-def create_workout_metric(rep, peak_velocity_con, mean_velocity_con, peak_power_con, mean_power_con, 
-                          peak_foce_con, mean_foce_con, peak_acceleration_con, mean_acceleration_con, 
-                          peak_velocity_ecc, mean_velocity_ecc, peak_power_ecc, mean_power_ecc, peak_foce_ecc, mean_foce_ecc, 
+def create_workout_metric(rep, peak_velocity, mean_velocity, peak_power, mean_power, peak_force, mean_force, 
+                          peak_velocity_con, mean_velocity_con, peak_power_con, mean_power_con, 
+                          peak_force_con, mean_force_con, peak_acceleration_con, mean_acceleration_con, 
+                          peak_velocity_ecc, mean_velocity_ecc, peak_power_ecc, mean_power_ecc, peak_force_ecc, mean_force_ecc, 
                           peak_acceleration_ecc, mean_acceleration_ecc, rep_duration_con, rep_duration_ecc, top_stay_duration, 
                           bottom_stay_duration, rep_duration, RSI, RFD
                           ) : 
     return {
         'rep' : rep, 
+        'peak_velocity' : peak_velocity, 
+        'mean_velocity' : mean_velocity, 
+        'peak_power' : peak_power,
+        'mean_power' : mean_power, 
+        'peak_force' : peak_force,
+        'mean_force' : mean_force,         
         'peak_velocity_con' : peak_velocity_con, 
         'mean_velocity_con' : mean_velocity_con, 
         'peak_power_con' : peak_power_con,
         'mean_power_con' : mean_power_con, 
-        'peak_foce_con' : peak_foce_con,
-        'mean_foce_con' : mean_foce_con, 
+        'peak_force_con' : peak_force_con,
+        'mean_force_con' : mean_force_con, 
         'peak_acceleration_con' : peak_acceleration_con,
         'mean_acceleration_con' : mean_acceleration_con, 
         'peak_velocity_ecc' : peak_velocity_ecc,
         'mean_velocity_ecc' : mean_velocity_ecc, 
         'peak_power_ecc' : peak_power_ecc,
         'mean_power_ecc' : mean_power_ecc, 
-        'peak_foce_ecc' : peak_foce_ecc,
-        'mean_foce_ecc' : mean_foce_ecc, 
+        'peak_force_ecc' : peak_force_ecc,
+        'mean_force_ecc' : mean_force_ecc, 
         'peak_acceleration_ecc' : peak_acceleration_ecc,
         'mean_acceleration_ecc' : mean_acceleration_ecc, 
         'rep_duration_con' : rep_duration_con,
@@ -73,16 +80,16 @@ def create_dumydata() :
     return {
         'workout_set' : create_workout_set(1, 70, 5, set1_work_start_time.isoformat(), set1_work_end_time.isoformat(), set1_rest_start_time.isoformat(), set1_rest_end_time.isoformat()),
         'workout_metrics' : [
-            create_workout_metric(1, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
-            create_workout_metric(2, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
-            create_workout_metric(3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
-            create_workout_metric(4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
-            create_workout_metric(5, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
-            create_workout_metric(1, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
-            create_workout_metric(2, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
-            create_workout_metric(3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
-            create_workout_metric(4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
-            create_workout_metric(5, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9)
+            create_workout_metric(1, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
+            create_workout_metric(2, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
+            create_workout_metric(3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
+            create_workout_metric(4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
+            create_workout_metric(5, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
+            create_workout_metric(1, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
+            create_workout_metric(2, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
+            create_workout_metric(3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
+            create_workout_metric(4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9),
+            create_workout_metric(5, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.1, 0.1, 0.1, 0.1, 0.5, 0.9, 0.9)
         ]
     }
 
