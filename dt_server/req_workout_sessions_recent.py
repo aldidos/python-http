@@ -14,7 +14,7 @@ API : /users/<user_id>/workout_sessions/recent
 import sys
 sys.path.append('.')
 
-from dt_server.base_uri import BaseAPI
+from base_uri import BaseAPI
 
 user_id = 1
 

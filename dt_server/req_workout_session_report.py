@@ -23,7 +23,7 @@ API : /users/<user_id>/workout_sessions/recent_report
 import sys
 sys.path.append('.')
 
-from dt_server.base_uri import BaseAPI
+from base_uri import BaseAPI
 import requests
 
 class WorkoutSessionReportAPI(BaseAPI) : 
