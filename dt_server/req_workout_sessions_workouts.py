@@ -12,6 +12,20 @@ API : /users/<user_id>/workout_sessions/<workout_session_id>/workouts
             status code : 
                 200 : OK
                 404 : Not Found
+
+API : /users/<user_id>/workout_sessions/<workout_session_id>/workouts/<workout_id>
+    Path params : 
+        user_id : User 고유키
+        workout_session_id : WorkoutSession 고유키
+        workout_id : Workout 고유키
+    Methods : 
+        PATCH : 
+            status code: 
+                200 : OK
+        GET : 
+            status code : 
+                200 : OK
+                404 : Not Found
 ====================================================================================
 '''
 import sys
@@ -22,10 +36,10 @@ import requests
 import json
 from datetime import datetime, timedelta
 
-def create_workout(workout_session_id, exercise_library, completed_sets, start_time, end_time) : 
+def create_workout(workout_session_id, equipment, completed_sets, start_time, end_time) : 
     return {
         'workout_session' : workout_session_id, 
-        'exercise_library' : exercise_library, 
+        'equipment' : equipment, 
         'completed_sets' : completed_sets, 
         'start_time' : start_time, 
         'end_time' : end_time
@@ -51,17 +65,28 @@ class WorkoutSessionWorkoutsAPI (BaseAPI) :
         return None
     
     def get(self, params) : 
-        requests.get(self.uri, params = params, headers = headers)
+        res = requests.get(self.uri, params = params, headers = headers)
+        self.print_response('GET', res)
 
 def main() : 
     uri = f'/users/{user_id}/workout_sessions/{workout_session_id}/workouts' 
     api = WorkoutSessionWorkoutsAPI(uri)
 
     workout = api.post(data)
+    print('POSTED workout id : ', workout['id'])
     
     api.get({'search_date' : 'period', 'from_date' : '2025-01-01', 'to_date' : '2025-03-01'})
 
     api.get({'date' : '2025-02-14'})
+
+    ####
+    workout_id = 1
+    uri = f'/users/{user_id}/workout_sessions/{workout_session_id}/workouts/{workout_id}' 
+    api = BaseAPI(uri)    
+
+    api.patch(data)
+
+    api.get()
 
 if __name__ == '__main__' : 
     main()

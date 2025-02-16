@@ -1,13 +1,13 @@
 '''
 ====================================================================================
-API : /centers/<center_id>/equipments
+API : /centers/<center_id>/equipments<center_equipment_id>
     Path params : 
         center_id : Center 데이터의 고유키
+        center_equipment_id : CenterEquipment 고유키키
     Methods : 
-        POST : 
+        PATCH : 
             status code: 
-                201 : 데이터 생성 성공
-                400 : Bad Request 
+                200 : OK                
         GET :     
             status code: 
                 200 : OK
@@ -24,28 +24,20 @@ import json
 data = {
     'center' : 1, 
     'equipment' : 1,
-    'location' : 20,     
-    'usage' : False
+    'location' : 1,
+    'usage' : True
 }
 
-def post(data) : 
-    center_id = data['center']
-    uri = f'/centers/{center_id}/equipments'
-    api = BaseAPI(uri)
-    res = api.post(data)
-    if res == 201 : 
-        return json.loads(res.text)
-    return None
-
-def get(center_id) : 
-    uri = f'/centers/{center_id}/equipments'
-    api = BaseAPI(uri)
-
-    api.get()
+center_id = 1
+center_equipment_id = 1
 
 def main() : 
-    post(data)
-    get(1)
+    uri = f'/centers/{center_id}/equipments/{center_equipment_id}'
+    api = BaseAPI(uri)
+
+    api.patch( data) 
+
+    api.get()
 
 if __name__ == '__main__' : 
     main()
