@@ -1,6 +1,16 @@
 '''
 ====================================================================================
-API : /users/<user_id>/recent_report/<exercise_library_id>/<set_number>
+ API : /users/<user_id>/reports/recent/exercise_libraries/<exercise_library_id>
+    Path params : 
+        user_id : User의 고유키
+        exercise_library_id : ExerciseLibrary의 고유키
+    Methods : 
+        GET : 
+            status code : 
+                200 : OK
+                404 : Not Found    
+
+API : /users/<user_id>/reports/recent/exercise_libraries/<exercise_library_id>/<set_number>
     Path params : 
         user_id : User의 고유키
         exercise_library_id : ExerciseLibrary의 고유키
@@ -10,16 +20,6 @@ API : /users/<user_id>/recent_report/<exercise_library_id>/<set_number>
             status code : 
                 200 : OK
                 404 : Not Found
-
- API : /users/<user_id>/recent_report/<exercise_library_id>
-    Path params : 
-        user_id : User의 고유키
-        exercise_library_id : ExerciseLibrary의 고유키
-    Methods : 
-        GET : 
-            status code : 
-                200 : OK
-                404 : Not Found               
 ====================================================================================
 '''
 
@@ -33,11 +33,11 @@ exercise_library_id = 1
 set_number = 1
 
 def main() :     
-    uri = f'/users/{user_id}/recent_report/{exercise_library_id}/{set_number}'
+    uri = f'/users/{user_id}/reports/recent/exercise_libraries/{exercise_library_id}/{set_number}'
     api = BaseAPI(uri)
     api.get()
 
-    uri = f'/users/{user_id}/recent_report/{exercise_library_id}'
+    uri = f'/users/{user_id}/reports/recent/exercise_libraries/{exercise_library_id}'
     api = BaseAPI(uri)
     api.get()
 

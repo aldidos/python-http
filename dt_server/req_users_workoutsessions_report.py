@@ -9,7 +9,7 @@ API : /users/<user_id>/workout_sessions/report
                 200 : OK
                 404 : Not Found
 
-API : /users/<user_id>/workout_sessions/recent_report
+API : /users/<user_id>/workout_sessions/report/recent
     Path params : 
         user_id : User 데이터의 고유키
     Methods : 
@@ -35,7 +35,7 @@ class WorkoutSessionReportAPI(BaseAPI) :
 user_id = 1
 
 def main() : 
-    uri = f'/users/{user_id}/workout_sessions/recent_report' 
+    uri = f'/users/{user_id}/workout_sessions/report/recent' 
     api = BaseAPI(uri)
     api.get()
 

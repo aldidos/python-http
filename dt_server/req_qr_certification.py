@@ -57,6 +57,6 @@ if __name__ == '__main__' :
     uri = f'/qr_certification' 
     api = QRcertificationAPI(uri)
 
-    api.put(data)
+    # api.put(data)
 
     api.get(data)

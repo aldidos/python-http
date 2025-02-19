@@ -11,6 +11,28 @@ API : /users/<user_id>/workout_sessions
             status code : 
                 200 : OK
                 404 : Not Found
+
+API : /users/<user_id>/workout_sessions/recent
+    Path params : 
+        user_id : User 데이터의 고유키
+    Methods : 
+        GET : 
+            status code : 
+                200 : OK
+                404 : Not Found
+
+API : /users/<user_id>/workout_sessions/<workout_session_id>
+    Path params : 
+        user_id : User 고유키
+        workout_session_id : WorkoutSession 고유키
+    Methods : 
+        PATCH : 
+            status code: 
+                200 : OK
+        GET : 
+            status code : 
+                200 : OK
+                404 : Not Found                
 ====================================================================================
 '''
 
@@ -57,8 +79,19 @@ query_params = {
 }
 
 user_id = 1
+workout_session_id = 1
+
+class WorkoutSessionAPI(BaseAPI) : 
+
+    def get(self) : 
+        res = super().get()
+
+        if res.status_code == 200 : 
+            return json.loads(res.text)
+        return None
 
 def main() : 
+    #### API : /users/<user_id>/workout_sessions
     uri = f'/users/{user_id}/workout_sessions' 
     api = UserWorkoutSessionsAPI(uri)    
 
@@ -70,7 +103,23 @@ def main() :
 
     api.get({
          'date' : '2025.02-11' 
-    })    
+    })       
+
+    #### API : /users/<user_id>/workout_sessions/recent
+    uri = f'/users/{user_id}/workout_sessions/recent' 
+    api = BaseAPI(uri)
+
+    api.get()
+
+    #### API : /users/<user_id>/workout_sessions/<workout_session_id>
+    uri = f'/users/{user_id}/workout_sessions/{workout_session_id}' 
+    api = WorkoutSessionAPI(uri)
+
+    workout_session = api.get()
+    if workout_session : 
+        workout_session['is_completed'] = True
+        workout_session['status'] = 'Complete'
+        api.patch(workout_session)
 
 if __name__ == '__main__' : 
     main()
