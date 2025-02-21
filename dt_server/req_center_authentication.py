@@ -26,7 +26,7 @@ class CenterAuthAPI(BaseAPI) :
         res = requests.get(self.uri, data = data, headers=headers)
         self.print_response('GET', res)
 
-user_id = 1
+user_id = 2
 
 put_data = {
     'center_name' : 'test_center_1', 
@@ -35,7 +35,7 @@ put_data = {
 }
 
 get_data = {
-    'user_id' : 1,
+    'user_id' : 2,
     'center_id' : 1
 }
 
