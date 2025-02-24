@@ -7,7 +7,7 @@ API : /centers/<center_id>/equipments/<center_equipment_id>/auth
     Methods : 
         PUT : 
             status code: 
-                201 : 데이터 생성 성공
+                200 : OK
                 400 : Bad Request 
         GET :     
             status code: 
